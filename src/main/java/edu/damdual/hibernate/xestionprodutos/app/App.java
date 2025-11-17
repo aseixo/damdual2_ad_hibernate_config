@@ -38,6 +38,6 @@ public class App {
         //List<Departamento> departamentoList = departamentoPersistance.todos();
         //departamentoList.stream().forEach(System.out::println);
         List<Departamento> departamentoList = departamentoPersistance.seleccionarPorId(3);
-        departamentoList.stream().forEach(System.out::println);
+        //departamentoList.stream().forEach(System.out::println);
     }
 }

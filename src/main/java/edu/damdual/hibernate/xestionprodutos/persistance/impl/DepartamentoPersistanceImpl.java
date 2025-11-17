@@ -101,9 +101,10 @@ public class DepartamentoPersistanceImpl implements IDepartamentoPersistance {
     public List<Departamento> todos() {
         Session session = HibernateUtil2.getSessionFactory().getCurrentSession();
         Transaction transaction = session.beginTransaction();
-        Query<Departamento> departamentoList = session.createNamedQuery("Departamento.todos", Departamento.class);
-        //Omitir commit() !!
-        return departamentoList.list();
+        List<Departamento> departamentoList = session.createNamedQuery("Departamento.todos", Departamento.class).getResultList();
+        //Copiar query a un list para evitar problemas fechando session con commit
+        transaction.commit();
+        return departamentoList;
     }
 
     @Override
@@ -111,6 +112,8 @@ public class DepartamentoPersistanceImpl implements IDepartamentoPersistance {
         Session session = HibernateUtil2.getSessionFactory().getCurrentSession();
         Transaction transaction = session.beginTransaction();
         Query<Departamento> departamentoQuery = session.createNamedQuery("Departamento.porId", Departamento.class).setParameter("id", id);
-        return departamentoQuery.list();
+        List<Departamento> departamentoList = departamentoQuery.getResultList();
+        transaction.commit();
+        return departamentoList;
     }
 }
