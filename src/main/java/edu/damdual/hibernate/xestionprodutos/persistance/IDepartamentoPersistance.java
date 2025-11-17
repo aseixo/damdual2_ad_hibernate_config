@@ -15,5 +15,7 @@ public interface IDepartamentoPersistance {
 
     public void delete(Departamento departamento);
     public int deleteById(int id);
+    public List<Departamento> todos();
+    public List<Departamento> seleccionarPorId(int id);
 
 }

@@ -6,6 +6,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "departamentos")
+
+@NamedNativeQueries( {
+        @NamedNativeQuery(name = "Departamento.todos",
+        query = "select * from departamentos d order by d.nome asc",
+        resultClass= Departamento.class)
+})
+@NamedQueries({
+        @NamedQuery(name = "Departamento.porId",
+        query = "SELECT d FROM Departamento d where d.id = :id")
+})
 public class Departamento {
 
     @Id

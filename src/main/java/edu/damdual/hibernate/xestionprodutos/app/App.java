@@ -18,7 +18,7 @@ public class App {
         //departamento.setId(45);
         departamento.setDataCreacion(Date.valueOf(LocalDate.now()));
         departamento.setDataActualizacion(Date.valueOf(LocalDate.now()));
-        Long id = departamentoPersistance.save(departamento);
+        //Long id = departamentoPersistance.save(departamento);
 
         Departamento departamento2 = new Departamento();
         departamento2.setNome("complementos de baño e duche");
@@ -28,12 +28,16 @@ public class App {
         //departamentoPersistance.merge(departamento2);
 
         departamento2.setDescricion("cambio de descrición");
-        departamentoPersistance.update(departamento2);
+        //departamentoPersistance.update(departamento2);
 
         departamentoPersistance.delete(departamento);
-        Departamento d = departamentoPersistance.getById(2);
+        Departamento d = departamentoPersistance.getById(1);
         System.out.println(d.getNome());
         //List<Departamento> departamentoList = departamentoPersistance.getAll();
         //departamentoList.stream().forEach(System.out::println);
+        //List<Departamento> departamentoList = departamentoPersistance.todos();
+        //departamentoList.stream().forEach(System.out::println);
+        List<Departamento> departamentoList = departamentoPersistance.seleccionarPorId(3);
+        departamentoList.stream().forEach(System.out::println);
     }
 }
